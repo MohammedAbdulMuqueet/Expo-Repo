@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#DFFFE4', // Same background color as Figma
   },
   logo: {
-    width: 150,
-    height: 80,
+    width: 200,
+    height: 100,
     resizeMode: 'contain',
   },
   text: {

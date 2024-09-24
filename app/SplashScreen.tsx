@@ -1,11 +1,17 @@
 import React from 'react';
-import { View, Image, StyleSheet, ImageBackground } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
 export default function SplashScreen() {
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/images/meditation.png')} style={styles.image} />
-      <Image source={require('../assets/images/logo.png')} style={styles.logo} />
+      <Image 
+        source={require('../assets/images/meditation.png')} 
+        style={styles.image} 
+      />
+      <Image 
+        source={require('../assets/images/logo.png')} 
+        style={styles.logo} 
+      />
     </View>
   );
 }
@@ -15,17 +21,24 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#DFFFE4', // Light green background
   },
   image: {
-    width: 200,
-    height: 300,
-    resizeMode: 'contain',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
   },
   logo: {
-    marginTop: 20,
-    width: 150,
-    height: 80,
+    position: 'absolute',
+    top: 0, // Adjust this value to move the logo down from the top
+    width: 250, // Increased width
+    height: 250, // Increased height
     resizeMode: 'contain',
+    opacity: 0.65,
+    alignSelf: 'center',
   },
 });
