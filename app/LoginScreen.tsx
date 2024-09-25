@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)', // Increased opacity of background
+    backgroundColor: 'rgba(255, 255, 255, 0.3)', // Increased opacity of background
     padding: 20,
   },
   logoContainer: {
