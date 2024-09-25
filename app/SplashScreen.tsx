@@ -34,9 +34,9 @@ const styles = StyleSheet.create({
   },
   logo: {
     position: 'absolute',
-    top: 0, // Adjust this value to move the logo down from the top
-    width: 250, // Increased width
-    height: 250, // Increased height
+    top: 0, 
+    width: 250, 
+    height: 250, 
     resizeMode: 'contain',
     opacity: 0.65,
     alignSelf: 'center',
