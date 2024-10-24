@@ -6,12 +6,24 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "esModuleInterop": true,                   // Allow default import from CommonJS modules
+    "allowSyntheticDefaultImports": true,       // Enable default imports without 'esModuleInterop'
+    "jsx": "react",                             // Enable JSX support for React
+    "moduleResolution": "node",                 // Resolve modules in node style
+    "resolveJsonModule": true,                  // Allow importing .json files
+    "isolatedModules": true                     // Isolate each module for faster compilation
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",                             // Exclude node_modules
+    "babel.config.js",                          // Exclude Babel config if present
+    "metro.config.js",                          // Exclude Metro config if present
+    "jest.config.js"                            // Exclude Jest config if present
   ]
 }

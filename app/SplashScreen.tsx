@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
+import { useRouter } from 'expo-router';
 
 export default function SplashScreen() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Navigate to login screen after 6 seconds (same total duration as before)
+    const timer = setTimeout(() => {
+      router.push('/LoginScreen');
+    }, 6000); // 6-second delay
+
+    // Cleanup the timer on component unmount
+    return () => clearTimeout(timer);
+  }, [router]);
+
   return (
     <View style={styles.container}>
       <Image 
@@ -38,7 +51,6 @@ const styles = StyleSheet.create({
     width: 250, 
     height: 250, 
     resizeMode: 'contain',
-    opacity: 0.65,
     alignSelf: 'center',
   },
 });

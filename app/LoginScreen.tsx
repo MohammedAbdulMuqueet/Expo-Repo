@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Text, Image, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, TextInput, Text, Image, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
 import { useRouter } from 'expo-router';
+import { BlurView } from 'expo-blur';
 
 export default function LoginScreen() {
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -9,40 +10,39 @@ export default function LoginScreen() {
   const router = useRouter();
 
   const handleGetOtp = () => {
-    // Logic to send OTP can be added here
     console.log(`Sending OTP to ${phoneNumber}`);
-    setOtpSent(true); // Simulate OTP sent
+    setOtpSent(true);
   };
 
   const handleSubmit = () => {
-    // Logic for OTP verification can be added here
     console.log(`Verifying OTP: ${otp}`);
-    router.push('/LandingPage'); // Navigate to landing page after verification
+    router.push('/LandingPage');
   };
 
   const handleResendOtp = () => {
-    // Logic to resend OTP can be added here
     console.log(`Resending OTP to ${phoneNumber}`);
   };
 
   return (
     <ImageBackground 
-      source={require('../assets/images/LoginBackground.jpg')} 
+      source={require('../assets/images/LoginBackground.png')} 
       style={styles.container}
-      resizeMode="cover" // Cover the whole screen
+      resizeMode="cover"
     >
-      <View style={styles.overlay}>
+      <BlurView intensity={50} style={styles.overlay}>
         <View style={styles.logoContainer}>
           <Image source={require('../assets/images/logo2.png')} style={styles.logo} />
         </View>
-        <Text style={styles.title}>LOGIN</Text>
+        
+        {/* Static text instead of animated text */}
+        <Text style={styles.title}>Rediscover Life, It is Yours!</Text>
         
         <TextInput
           style={styles.input}
           placeholder="Phone Number"
           value={phoneNumber}
           onChangeText={setPhoneNumber}
-          keyboardType="phone-pad" // To open number keypad
+          keyboardType="phone-pad"
         />
         
         {otpSent && (
@@ -52,24 +52,24 @@ export default function LoginScreen() {
               placeholder="Enter OTP"
               value={otp}
               onChangeText={setOtp}
-              keyboardType="number-pad" // To open number keypad
+              keyboardType="number-pad"
             />
-            <Button title="Submit OTP" onPress={handleSubmit} color="#007BFF" /> 
+            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+              <Text style={styles.buttonText}>Submit OTP</Text>
+            </TouchableOpacity>
           </>
         )}
         
         {!otpSent ? (
-          <Button title="Get OTP" onPress={handleGetOtp} color="#007BFF" /> 
+          <TouchableOpacity style={styles.button} onPress={handleGetOtp}>
+            <Text style={styles.buttonText}>Get OTP</Text> 
+          </TouchableOpacity>
         ) : (
-          <TouchableOpacity onPress={handleResendOtp}>
-            <Text style={styles.resendOtp}>Resend OTP</Text>
+          <TouchableOpacity style={styles.button} onPress={handleResendOtp}>
+            <Text style={styles.buttonText}>Resend OTP</Text>
           </TouchableOpacity>
         )}
-        
-        <TouchableOpacity onPress={() => router.push('../register')}>
-          <Text style={styles.register}>Do not have an account? Register now</Text>
-        </TouchableOpacity>
-      </View>
+      </BlurView>
     </ImageBackground>
   );
 }
@@ -82,15 +82,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.3)', // Increased opacity of background
     padding: 20,
+    backgroundColor: 'transparent',
   },
   logoContainer: {
-    marginBottom: 45, // Decrease margin bottom to bring title closer
-    marginTop: 0, // Adjust this value to move logo closer to the top
+    marginBottom: 55,
+    marginTop: 0,
   },
   logo: {
-    width: 250, // Keeping the logo size intact
+    width: 250,
     height: 130,
     resizeMode: 'contain',
   },
@@ -98,23 +98,33 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    opacity: 0.8,
+    textAlign: 'left',
+    width: '100%',
+    paddingLeft: 20,
   },
   input: {
     height: 40,
-    width: '80%',
+    width: '90%',
     borderColor: 'gray',
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 10,
     paddingHorizontal: 10,
     marginBottom: 10,
     backgroundColor: '#fff',
   },
-  resendOtp: {
-    color: 'red',
-    marginTop: 10,
+  button: {
+    marginVertical: 5,
+    width: '90%',
+    backgroundColor: '#2E7D32',
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
   },
-  register: {
-    marginTop: 20,
-    color: 'red',
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
